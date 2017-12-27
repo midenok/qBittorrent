@@ -418,6 +418,7 @@ void WebApplication::action_command_download()
     params.addPaused = addPaused;
     params.savePath = savepath;
     params.category = category;
+    params.sequential = Preferences::instance()->sequentialDownload();
 
     bool partialSuccess = false;
     foreach (QString url, list) {

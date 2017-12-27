@@ -35,6 +35,7 @@
 #include <QMenu>
 #include <QFileDialog>
 
+#include "base/preferences.h"
 #include "base/settingsstorage.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
@@ -645,6 +646,7 @@ void AddNewTorrentDialog::accept()
         params.filePriorities = m_contentModel->model()->getFilePriorities();
 
     params.addPaused = !ui->startTorrentCheckBox->isChecked();
+    params.sequential = Preferences::instance()->sequentialDownload();
 
     QString savePath = ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString();
     if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.

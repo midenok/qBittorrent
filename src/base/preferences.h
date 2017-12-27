@@ -259,6 +259,8 @@ public:
     void setConfirmTorrentDeletion(bool enabled);
     bool confirmTorrentRecheck() const;
     void setConfirmTorrentRecheck(bool enabled);
+    bool sequentialDownload() const;
+    void setSequentialDownload(bool enabled);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
 

@@ -57,6 +57,7 @@ enum AdvSettingsRows
     SAVE_RESUME_DATA_INTERVAL,
     CONFIRM_RECHECK_TORRENT,
     RECHECK_COMPLETED,
+    SEQUENTIAL_DOWNLOAD,
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     UPDATE_CHECK,
 #endif
@@ -185,6 +186,7 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->useSystemIconTheme(cb_use_icon_theme.isChecked());
 #endif
     pref->setConfirmTorrentRecheck(cb_confirm_torrent_recheck.isChecked());
+    pref->setSequentialDownload(cb_sequential_download.isChecked());
     session->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
 }
 
@@ -378,6 +380,8 @@ void AdvancedSettings::loadAdvancedSettings()
     // Torrent recheck confirmation
     cb_confirm_torrent_recheck.setChecked(pref->confirmTorrentRecheck());
     addRow(CONFIRM_RECHECK_TORRENT, tr("Confirm torrent recheck"), &cb_confirm_torrent_recheck);
+    cb_sequential_download.setChecked(pref->sequentialDownload());
+    addRow(SEQUENTIAL_DOWNLOAD, tr("Sequential download"), &cb_sequential_download);
     // Announce to all trackers
     cb_announce_all_trackers.setChecked(session->announceToAllTrackers());
     addRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);

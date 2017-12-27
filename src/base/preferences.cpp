@@ -1064,6 +1064,16 @@ void Preferences::setConfirmTorrentRecheck(bool enabled)
     setValue("Preferences/Advanced/confirmTorrentRecheck", enabled);
 }
 
+bool Preferences::sequentialDownload() const
+{
+    return value("Preferences/Advanced/sequentialDownload", true).toBool();
+}
+
+void Preferences::setSequentialDownload(bool enabled)
+{
+    setValue("Preferences/Advanced/sequentialDownload", enabled);
+}
+
 TrayIcon::Style Preferences::trayIconStyle() const
 {
     return TrayIcon::Style(value("Preferences/Advanced/TrayIconStyle", TrayIcon::NORMAL).toInt());
