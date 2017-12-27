@@ -338,7 +338,11 @@ Session::Session(QObject *parent)
         dispatchAlerts(alertPtr.release());
     });
 #else
+#if (LIBTORRENT_VERSION_NUM >= 10100) && (LIBTORRENT_VERSION_NUM < 10102)
+    std::string peerId = libt::fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD).to_string();
+#else
     std::string peerId = libt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
+#endif
     libt::settings_pack pack;
     pack.set_int(libt::settings_pack::alert_mask, alertMask);
     pack.set_str(libt::settings_pack::peer_fingerprint, peerId);
